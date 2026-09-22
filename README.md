@@ -31,10 +31,18 @@ Public mode permits anonymous access and ignores authorization headers; enable
 protected mode to enforce key grants.
 
 Clients use the application's `/mcp` URL and send `Authorization: Bearer <key>`
-on every request. Remote connections must use HTTPS. OAuth discovery/browser
-sign-in is not included. Full secrets must not be placed in URLs, checked-in
+on every request. Remote connections must use HTTPS. Full secrets must not be placed in URLs, checked-in
 configuration, or tool arguments. Revocation/expiry is checked before each new
 tool admission; already admitted calls finish. Credentials survive reload/restart.
+
+For browser-based Agent authorization, install the independent
+`toolframe-oidc-auth` plugin with compatible Core/Auth builds. MCP Auth declares
+an optional `toolframe.oauth.tokens` dependency: `tf_oauth_` tokens and `oauth:`
+credential references are delegated to its verifier with the resource and
+required scopes intact. Existing keys stay local to this plugin. An absent or
+unhealthy optional verifier rejects OAuth requests without disabling key
+verification. OIDC login, consent, discovery and token issuance belong to the
+shared OIDC plugin; MCP Auth adds no provider-specific authentication flow.
 
 The internal `toolframe.mcp-auth` service provides `create`, `list`, `revoke`,
 `verify` and `resolve`. Core admits management callers and owns trusted request

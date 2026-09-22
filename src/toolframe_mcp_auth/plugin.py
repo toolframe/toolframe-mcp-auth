@@ -151,6 +151,19 @@ class McpAuthProvider(Plugin):
         return {"principal": actor.model_dump()}
 
     async def invoke(self, service, method, params):
+        # Optional OAuth I/O must not hold the independent key-store lock.
+        if (
+            method == "verify"
+            and isinstance(params.get("token"), str)
+            and params["token"].startswith("tf_oauth_")
+        ):
+            return await self.context.call("oauth", "verify", params)
+        if (
+            method == "resolve"
+            and isinstance(params.get("id"), str)
+            and params["id"].startswith("oauth:")
+        ):
+            return await self.context.call("oauth", "resolve", params)
         async with self.lock:
             if method == "verify":
                 token = params.get("token")
@@ -227,7 +240,10 @@ plugin = PluginDefinition(
     provider_kind="mcp-auth",
     factory="toolframe_mcp_auth.plugin:McpAuthProvider",
     authorization=AuthorizationSpec(),
-    requires={"storage": Requirement(service="toolframe.storage.sql")},
+    requires={
+        "storage": Requirement(service="toolframe.storage.sql"),
+        "oauth": Requirement(service="toolframe.oauth.tokens", optional=True),
+    },
     services={
         SERVICE: ServiceSpec(
             methods={
