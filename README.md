@@ -55,3 +55,11 @@ uv run pytest -q
 uv run ruff check src tests
 uv build --wheel
 ```
+
+## PostgreSQL storage
+
+Version 0.2 requires SDK 0.3 and declares PostgreSQL migration SQL alongside the
+unchanged SQLite history. Provision this plugin’s stable store owner with the
+PostgreSQL provider before enabling it. The application still runs one Core;
+retain its private keys and configuration with the application home. Existing
+SQLite records are not imported automatically.

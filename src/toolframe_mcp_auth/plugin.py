@@ -8,6 +8,7 @@ import re
 import secrets
 import time
 import uuid
+from importlib.resources import files
 
 from toolframe_sdk import (
     AuthorizationSpec,
@@ -255,6 +256,17 @@ plugin = PluginDefinition(
         )
     },
     store=StoreSchema(
-        revision="v1", migrations=(Migration(revision="v1", sql=SCHEMA),)
+        revision="v1",
+        migrations=(
+            Migration(
+                revision="v1",
+                sql=SCHEMA,
+                dialects={
+                    "postgresql": files(__package__)
+                    .joinpath("migrations", "v1.postgresql.sql")
+                    .read_text()
+                },
+            ),
+        ),
     ),
 )

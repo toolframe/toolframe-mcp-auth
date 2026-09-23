@@ -1,0 +1,6 @@
+
+CREATE TABLE mcp_keys (
+ id TEXT PRIMARY KEY, label TEXT NOT NULL, digest TEXT NOT NULL UNIQUE,
+ scopes TEXT NOT NULL, created_by TEXT NOT NULL,
+ created_at DOUBLE PRECISION NOT NULL, expires_at DOUBLE PRECISION, revoked_at DOUBLE PRECISION, last_used DOUBLE PRECISION
+);
