@@ -65,3 +65,5 @@ retain its private keys and configuration with the application home. Existing
 SQLite records are not imported automatically.
 
 For release validation and Trusted Publisher setup, see [releasing](docs/releasing.md).
+
+For development hooks and contribution rules, see [Contributing](CONTRIBUTING.md).
