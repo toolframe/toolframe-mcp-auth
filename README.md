@@ -18,12 +18,12 @@ mode = "protected"
 auth_provider = "mcp-auth"
 
 [plugins.mcp-auth]
-source = "pypi:toolframe-mcp-auth==0.1.0"
+source = "pypi:toolframe-mcp-auth==0.2.0"
 enabled = true
 ```
 
-The source above describes the package release; use this checkout's absolute path
-until it is published. Apply configuration changes with `toolframe apply`.
+Apply configuration changes with `toolframe --home APP apply`. Core downloads
+the pinned package from PyPI and prepares its isolated environment.
 Creating a key does not change public/protected mode. Protected MCP stays closed
 with no keys or when its auth provider is missing, disabled, reloading or failed.
 Local MCP clients also require credentials. Dashboard access has its own policy.
@@ -63,3 +63,5 @@ unchanged SQLite history. Provision this plugin’s stable store owner with the
 PostgreSQL provider before enabling it. The application still runs one Core;
 retain its private keys and configuration with the application home. Existing
 SQLite records are not imported automatically.
+
+For release validation and Trusted Publisher setup, see [releasing](docs/releasing.md).

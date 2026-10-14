@@ -9,14 +9,21 @@ description = "Managed bearer keys for Toolframe MCP clients"
 readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "byfb", email = "62798989+byfb@users.noreply.github.com" }]
 requires-python = ">=3.14"
 dependencies = ["toolframe-sdk==0.3.0"]
+
+[project.urls]
+Homepage = "https://github.com/toolframe/toolframe-mcp-auth"
+Repository = "https://github.com/toolframe/toolframe-mcp-auth"
+Documentation = "https://github.com/toolframe/toolframe-mcp-auth#readme"
+Issues = "https://github.com/toolframe/toolframe-mcp-auth/issues"
 
 [project.entry-points."toolframe.plugins"]
 mcp-auth = "toolframe_mcp_auth.plugin:plugin"
 
 [dependency-groups]
-dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "ruff>=0.12,<1", "toolframe-storage-sqlite==0.3.0"]
+dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "ruff>=0.12,<1", "toolframe-storage-sqlite==0.3.1"]
 
 [tool.uv.sources]
 toolframe-sdk = { path = "../toolframe-sdk", editable = true }
