@@ -1,6 +1,6 @@
 # Releasing toolframe-mcp-auth
 
-The distribution name is `toolframe-mcp-auth`; its current version is `0.2.0`.
+The distribution name is `toolframe-mcp-auth`. The version is defined in `pyproject.toml`.
 Release tags must exactly match `v<project.version>`. Ordinary CI never uploads
 packages. The manual `publish.yml` workflow reruns validation and publishes only
 artifacts produced by that successful run.
