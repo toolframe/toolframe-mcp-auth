@@ -5,7 +5,7 @@ Managed, named bearer keys for MCP clients using Streamable HTTP. Each key conta
 The credential provider owns its managed SQLite store and retains only SHA-256
 digests. Full keys are returned once, only when created.
 
-Install this plugin with `toolframe-storage-sqlite`, the updated SDK/core and
+Install this plugin with `toolframe-sql-sqlite`, the updated SDK/core and
 FastMCP provider. The optional MCP keys page ships in Dashboard Auth. Operators
 or grants with `system.auth.mcp_keys` can create, list and revoke keys; issuance
 is bounded by the administrator's own business scopes and expiry. MCP keys carry
@@ -18,7 +18,7 @@ mode = "protected"
 auth_provider = "mcp-auth"
 
 [plugins.mcp-auth]
-source = "pypi:toolframe-mcp-auth==0.2.0"
+source = "pypi:toolframe-mcp-auth==0.3.0"
 enabled = true
 ```
 
