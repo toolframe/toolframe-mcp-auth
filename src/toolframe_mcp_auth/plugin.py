@@ -50,7 +50,7 @@ def public_record(record):
 class McpAuthProvider(Plugin):
     def __init__(self, context):
         super().__init__(context)
-        self.store = context.storage()
+        self.store = context.sql()
         self.lock = asyncio.Lock()
 
     async def activate(self):
@@ -242,7 +242,7 @@ plugin = PluginDefinition(
     factory="toolframe_mcp_auth.plugin:McpAuthProvider",
     authorization=AuthorizationSpec(),
     requires={
-        "storage": Requirement(service="toolframe.storage.sql"),
+        "sql": Requirement(service="toolframe.sql"),
         "oauth": Requirement(service="toolframe.oauth.tokens", optional=True),
     },
     services={
