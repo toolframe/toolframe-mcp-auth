@@ -18,7 +18,7 @@ mode = "protected"
 auth_provider = "mcp-auth"
 
 [plugins.mcp-auth]
-source = "pypi:toolframe-mcp-auth==0.3.1"
+source = "pypi:toolframe-mcp-auth==0.3.2"
 enabled = true
 ```
 
